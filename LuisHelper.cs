@@ -35,6 +35,7 @@ namespace Microsoft.BotBuilderSamples
                 var (intent, score) = recognizerResult.GetTopScoringIntent();
                 returnIntents.Intent = intent;
                 returnIntents.Score = score;
+                returnIntents.Entities = recognizerResult.Entities["datetimeV2"]?.FirstOrDefault()?["geographyV2"]?.FirstOrDefault()?.FirstOrDefault()?.ToString();
 
                 //if (intent == "Book_flight")
                 //{

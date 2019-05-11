@@ -88,7 +88,15 @@ namespace Microsoft.BotBuilderSamples
 
                 //var Property = new TimexProperty(result.TravelDate);
                 //var travelDateMsg = timeProperty.ToNaturalLanguage(DateTime.Now);
-                var msg = $"Luis returned the intent \"{result.Intent}\" with a score of {result.Score}";
+                if (result.Entities == null)
+                {
+                    result.Entities = "no entities";
+                }
+                else
+                {
+                    result.Entities = $"these entities {result.Entities}";
+                }
+                var msg = $"Luis returned the intent \"{result.Intent}\" with a score of {result.Score} and {result.Entities}.";
                 await stepContext.Context.SendActivityAsync(MessageFactory.Text(msg), cancellationToken);
             }
             else
